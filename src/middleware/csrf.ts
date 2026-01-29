@@ -49,7 +49,7 @@ export const csrfProtection = doubleCsrfProtection;
  * Error handler for CSRF validation failures
  */
 export const csrfErrorHandler = (
-  err: any,
+  err: Error & { code?: string },
   req: Request,
   res: Response,
   next: NextFunction

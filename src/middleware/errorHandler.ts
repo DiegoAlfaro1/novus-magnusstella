@@ -27,7 +27,7 @@ export const errorHandler = (
   err: Error | AppError,
   req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ): void => {
   // Default to 500 if no status code is set
   const statusCode = (err as AppError).statusCode || 500;
@@ -57,7 +57,7 @@ export const errorHandler = (
  * Wraps async route handlers to catch errors and pass them to error middleware
  */
 export const asyncHandler = (
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<any>
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<void>
 ) => {
   return (req: Request, res: Response, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);

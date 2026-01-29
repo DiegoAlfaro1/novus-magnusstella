@@ -64,7 +64,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // 4. Session Configuration
 app.use(session({
-  key: 'magnusstella_session',
   secret: process.env.SESSION_SECRET || 'default-secret-change-in-production',
   store: sessionStore,
   resave: false,
