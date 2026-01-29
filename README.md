@@ -96,10 +96,14 @@ See `.env.example` for all required environment variables:
 - **express-mysql-session** - Production-ready session store
 - **TypeORM** - ORM (ready for future migration)
 
+### File & Email
+- **Multer 2.x** - File upload handling (upgraded for security)
+- **Nodemailer 7.x** - Email sending (upgraded for security)
+
 ### Development
 - **Nodemon** - Auto-restart on changes
 - **ts-node** - TypeScript execution
-- **ESLint** - Code linting
+- **ESLint 9** - Code linting with flat config
 - **Prettier** - Code formatting
 
 ## Migration from Legacy
@@ -112,6 +116,7 @@ This project is a ground-up refactor of the original MagnusStella application. K
 4. **Session Store** - MySQL-backed sessions for production
 5. **Security** - Helmet, rate limiting, secure session configuration
 6. **Code Organization** - src/ folder structure, clear separation of concerns
+7. **Updated Dependencies** - Upgraded to Multer 2.x, Nodemailer 7.x, ESLint 9 for security and compatibility
 
 See `docs/` folder for legacy project documentation and architecture.
 

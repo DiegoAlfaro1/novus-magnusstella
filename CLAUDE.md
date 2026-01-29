@@ -16,7 +16,7 @@
 - `npm start` - Run production build (node dist/app.js)
 
 #### Code Quality
-- `npm run lint` - Run ESLint on TypeScript files
+- `npm run lint` - Run ESLint on TypeScript files (ESLint 9 with flat config)
 - `npm run format` - Format code with Prettier
 
 ### Architecture
@@ -26,6 +26,8 @@
 - **Express 4.18** - Web application framework
 - **MySQL2 3.9** - Database client with promise support
 - **TypeORM 0.3** - ORM ready for future database migrations
+- **Multer 2.x** - File upload handling (upgraded from 1.x for security)
+- **Nodemailer 7.x** - Email sending (upgraded from 6.x for security)
 
 #### Security Layers
 - **Helmet** - Security headers (CSP, COOP, etc.)
@@ -33,6 +35,7 @@
 - **express-rate-limit** - API rate limiting (100 req/15min per IP)
 - **express-mysql-session** - Production-ready session store
 - **bcryptjs** - Password hashing with salt rounds
+- **ESLint 9** - Modern flat config format with TypeScript support
 
 #### Project Structure
 ```
