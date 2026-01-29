@@ -33,14 +33,25 @@ export const errorHandler = (
   const statusCode = (err as AppError).statusCode || 500;
   const message = err.message || 'Internal Server Error';
 
-  // Log error for debugging (in production, use proper logging service)
-  console.error('Error:', {
-    message: err.message,
-    stack: err.stack,
-    url: req.url,
-    method: req.method,
-    statusCode
-  });
+  // Log error for debugging
+  // TODO: Use proper logging service (Winston, Pino) in production
+  if (process.env.NODE_ENV === 'development') {
+    console.error('Error:', {
+      message: err.message,
+      stack: err.stack,
+      url: req.url,
+      method: req.method,
+      statusCode
+    });
+  } else {
+    // In production, log minimal information
+    console.error('Error:', {
+      message: err.message,
+      url: req.url,
+      method: req.method,
+      statusCode
+    });
+  }
 
   // Send error response
   res.status(statusCode).json({

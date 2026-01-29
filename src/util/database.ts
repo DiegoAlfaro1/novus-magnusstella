@@ -51,4 +51,6 @@ process.on('SIGINT', () => {
   });
 });
 
+// Export both promise pool (for queries) and regular pool (for session store)
 export default promisePool;
+export { pool };

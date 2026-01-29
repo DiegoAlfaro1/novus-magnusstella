@@ -8,12 +8,20 @@ import { Request, Response, NextFunction } from 'express';
  * Provides token-based CSRF protection with modern implementation
  */
 
+// Validate required secrets
+const csrfSecret = process.env.SESSION_SECRET;
+if (!csrfSecret) {
+  throw new Error('SESSION_SECRET environment variable is required for CSRF protection');
+}
+
 const {
   generateToken,
   doubleCsrfProtection,
 } = doubleCsrf({
-  getSecret: () => process.env.SESSION_SECRET || 'default-csrf-secret',
-  cookieName: '__Host-psifi.x-csrf-token',
+  getSecret: () => csrfSecret,
+  cookieName: process.env.NODE_ENV === 'production' 
+    ? '__Host-psifi.x-csrf-token' 
+    : 'x-csrf-token',
   cookieOptions: {
     sameSite: 'strict',
     path: '/',

@@ -8,7 +8,7 @@ import path from 'path';
 import { config } from 'dotenv';
 
 // Import database connection
-import db from './util/database';
+import db, { pool } from './util/database';
 
 // Import middleware
 import { csrfTokenProvider, csrfProtection, csrfErrorHandler } from './middleware/csrf';
@@ -16,6 +16,16 @@ import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 
 // Load environment variables
 config();
+
+// Validate required environment variables
+const requiredEnvVars = ['SESSION_SECRET'];
+const missingEnvVars = requiredEnvVars.filter(varName => !process.env[varName]);
+
+if (missingEnvVars.length > 0) {
+  console.error(`ERROR: Missing required environment variables: ${missingEnvVars.join(', ')}`);
+  console.error('Please set these variables in your .env file or environment');
+  process.exit(1);
+}
 
 // Initialize Express app
 const app: Express = express();
@@ -27,7 +37,8 @@ const sessionStore = new MySQLStore({
   clearExpired: true,
   checkExpirationInterval: 900000, // 15 minutes
   expiration: 86400000, // 24 hours
-}, db as any);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+}, pool as any);
 
 /**
  * MIDDLEWARE CONFIGURATION
@@ -64,7 +75,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // 4. Session Configuration
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'default-secret-change-in-production',
+  secret: process.env.SESSION_SECRET!,
   store: sessionStore,
   resave: false,
   saveUninitialized: false,
