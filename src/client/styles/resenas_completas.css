@@ -1,0 +1,90 @@
+.container {
+  margin-top: -250px;
+}
+
+body {
+  padding-bottom: 0%;
+}
+
+.container {
+  margin-top: 40px;
+  background-color: var(--toggle-color);
+  color: var(--text-color_rev);
+  overflow: auto;
+}
+
+.switch-checkbox {
+  padding-top: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  background: var(--body-color);
+  align-items: center;
+  border-radius: 5px;
+  padding: auto right;
+  justify-content: left;
+}
+
+.switch-checkbox input {
+  outline: none;
+  height: 20px;
+  /* Ajustado */
+  width: 50px;
+  /* Ajustado */
+  border-radius: 50px;
+  appearance: none;
+  position: relative;
+  background: #668bbb;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+  transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.switch-checkbox input:checked {
+  background: #e6e6e6;
+}
+
+.switch-checkbox input:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 20px;
+  /* Ajustado */
+  background: linear-gradient(#fff, #f2f2f2, #e6e6e6, #d9d9d9);
+  border-radius: 50px;
+  transform: scale(0.85);
+  transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+input:checked:before {
+  left: 27px;
+  /* Ajustado */
+}
+
+input:checked ~ .text:before {
+  content: "Deshabilitado";
+  font-size: 10pt;
+  /* Ajustado */
+  font-weight: 500;
+  color: var(--disabled-color);
+}
+
+.switch-checkbox .text:before {
+  content: "Habilitado";
+  color: var(--edit-color);
+  font-size: 10pt;
+  /* Ajustado */
+}
+
+.switch-checkbox.deshabilitado input {
+    background: rgb(107, 107, 107);
+}
+
+.switch-checkbox.deshabilitado input:checked {
+  background: #afafaf;
+}
+
+.espacio-muerto{
+    width: 100%;
+}

@@ -1,0 +1,161 @@
+.correos-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+body {
+    padding-bottom: 0%;
+}
+
+.editor-de-preguntas,
+.preview-html {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  overflow:auto;
+}
+
+.preview-html {
+  overflow: auto;
+  width: 45%;
+}
+
+.form-container {
+  display: flex;
+  justify-content: end;
+}
+
+.submit-button-container {
+  margin: 20px 0 20px 0;
+  width: 100%;
+}
+
+.contenido{
+  min-width: 700px;
+}
+
+.submit-button button {
+  width: 30%;
+  border: none;
+}
+
+/* botón de eliminar en modo claro */
+a.delete {
+  color: var(--delete-color);
+}
+
+a.delete:hover {
+  color: var(--delete-color-hover);
+}
+
+.ques-container {
+  margin-bottom: 20px;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: none;
+}
+
+.add-ques-button{
+  border-radius: 1em;
+  outline: none;
+  border: none;
+  background-color: var(--highlight);
+  display: flex;
+  justify-content: center;
+}
+
+.add-ques-button:hover {
+  background-color: var(--highlight2);
+  color:#fff
+}
+
+.ques-container {
+  border-radius: 1em;
+  width: 100%;
+  background-color: var(--help-card-color);
+}
+
+#dias {
+  width: 6em;
+  font-size: 12pt;
+  background-color: var(--help-card-color);
+  color: var(--search-text);
+  border: none;
+  border-radius: 10pt;
+}
+
+#btn-enviar-dias {
+  background-color: var(--highlight);
+  font-size: 12pt;
+  border: solid 0px;
+  border-radius: 10pt;
+  color: #fff;
+}
+
+#btn-enviar-dias:hover {
+  background-color: var(--highlight2);
+}
+
+a.add-ques-button{
+  color:#fff;
+}
+
+a.add-ques-button:hover{
+  color:#fff;
+}
+
+body.dark a.add-ques-button:hover {
+  color: #fff;
+}
+/* botón de eliminar en modo oscuro */
+body.dark a.delete:link {
+  text-decoration: none;
+  color: var(--delete-color);
+}
+
+body.dark a.delete:link:hover {
+  text-decoration: none;
+  color: var(--delete-color-hover);
+}
+
+body.dark a.delete:visited {
+  text-decoration: none;
+  color: var(--delete-color);
+}
+
+body.dark a.delete:visited:hover {
+  text-decoration: none;
+  color: var(--delete-color-hover);
+}
+
+body.dark a.settings:link {
+  text-decoration: none;
+  color: var(--highlight);
+}
+
+body.dark a.settings:link:hover {
+  text-decoration: none;
+  color: var(--highlight2);
+}
+
+body.dark a.settings:visited {
+  text-decoration: none;
+  color: var(--highlight);
+}
+
+body.dark a.settings:visited:hover {
+  text-decoration: none;
+  color: var(--highlight2);
+}
+
+.contenido{
+  min-width: 600px;
+}
+
+.blankspace{
+  min-height: 2em;
+  width: 100%;
+}
