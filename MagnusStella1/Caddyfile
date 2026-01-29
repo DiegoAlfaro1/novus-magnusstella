@@ -1,0 +1,11 @@
+:80 {
+	reverse_proxy localhost:3000
+}
+
+magnusstellacore.laing.mx {
+	reverse_proxy localhost:3000
+
+	tls {
+		on_demand
+	}
+}

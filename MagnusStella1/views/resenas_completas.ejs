@@ -1,0 +1,95 @@
+<%- include('includes/navigation.ejs') %>
+
+<head>
+  <link rel="stylesheet" href="/css/resenas_completas.css">
+</head>
+
+<div class="container">
+  <div class="contenido">
+    <img src="/images/<%= marca %>.png" width="600" alt="Imagen de la marca <%= marca %>"/>
+ 
+    <% let editable = false %>
+    <% for (let permiso of permisos) { %> 
+        <% if (permiso.funcion =="editar") { %>
+            <% editable = true %>
+        <% } %>
+    <% } %>
+    <% if (editable) { %>
+      <div class="switch-checkbox">
+        <p id="fecha"><%= resena.fecha %></p>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <input type="checkbox" id="visibilidadCheckbox_<%= resena.id_resena%>" <% if (resena.visibilidad == 0) { %> checked <% } %> >
+        <label for="visibilidadCheckbox" class="text"></label> 
+      </div>
+    <% } %>
+    <% if (!editable) { %>
+      <div class="switch-checkbox deshabilitado">
+        <p id="fecha"><%= resena.fecha %></p>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <input type="checkbox" disabled id="visibilidadCheckbox_<%= resena.id_resena%>" <% if (resena.visibilidad == 0) { %> checked <% } %> > 
+        <label for="visibilidadCheckbox" class="text"></label>
+      </div>
+    <% } %>      
+    
+    <h3><b>Hola <%= resena.nombre_cliente %></b></h3>
+    <p id="sub_question">
+      Has comprado recientemente <%= resena.nombre_producto %> <br />
+      ¿Nos cuentas tu experiencia?
+    </p>
+    <div class="rating-box">
+      <h5 id="question_text"><b>¿Cúal es su calificación general?</b></h5>
+      <div class="estrellas">
+        <% for (var i = 0; i < 5; i++) { %> <% if (i < resena.estrellas_resena)
+        { %>
+        <i class="bx bxs-star" id="stars_y"></i>
+        <% } else { %>
+        <i class="bx bx-star" id="stars_g"></i>
+        <% } %> <% } %>
+      </div>
+    </div>
+    <h4><b><%= resena.titulo_resena %></b></h4>
+    <p id="sub_question"><%= resena.descripcion_resena %></p>
+    <h5><br />Preguntas</h5>
+    <% for (var i = 0; i < total_p; i++) { %>
+      <br>
+      <h4><b><%= preguntas[i] %></b></h4>
+      <% respuestas[i].forEach(respuesta => { %>
+        <p id="sub_question"><%= respuesta.Descripción %></p>
+      <% }); %>
+  <% } %>
+  </div>
+</div>
+<%- include('includes/footer.ejs') %>
+
+<script>
+  // Agrega esta línea para acceder a los permisos
+
+  //   Dentro del event listener de "DOMContentLoaded"
+  document.querySelectorAll("[id^='visibilidadCheckbox']").forEach(checkbox => {
+      checkbox.addEventListener("change", function() {
+        
+          const idReview = this.id.split("_")[1]; // Obtener el ID de la reseña a partir del ID del checkbox 
+          const nuevaVisibilidad = this.checked ? 0 : 1;
+      
+          fetch('/reviews/resenas/visibilidad/' + idReview, { // Hace un post asociado a /visibilidad, actualiza la visibilidad.
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+                  'X-CSRF-Token': '<%= csrfToken %>' 
+                  
+              },
+              body: JSON.stringify({ visibilidad: nuevaVisibilidad }),
+          })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error("Error al actualizar la visibilidad");
+              }
+
+          })
+          .catch(error => {
+              console.error("Error:", error);
+              this.checked = !this.checked; //Si hay un error, revierte el estado del checkbox.
+          });
+      });
+  });
+</script>

@@ -1,0 +1,29 @@
+.signup-box{
+    background-color: var(--help-card-color);
+    border-radius: 1em;
+    overflow: auto;
+}
+
+.credential-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: baseline;
+  margin-left: 20px;
+  margin-bottom: 30px;
+  color: (--edit-color);
+  font-weight: 500;
+  width: 450px;
+}
+
+.credential-input input {
+  margin-top: 10px;
+  width: 90%;
+  height: 30px;
+  border: var(--edit-color);
+  background-color: var(--text-color-up);
+  border-radius: 5px;
+  outline: 2px solid var(--edit-color);
+}
+
+

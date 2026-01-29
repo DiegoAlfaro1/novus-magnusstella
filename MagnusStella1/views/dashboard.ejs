@@ -1,0 +1,145 @@
+<%-include('includes/navigation.ejs', { titulo: titulo, promedioPuntajes:
+promedioPuntajes, tasaDeRespuesta: tasaDeRespuesta, encuestasEnviadas:
+encuestasEnviadas, ruta: ruta, }) %>
+
+<div class="graficas">
+  <div class="cat-search">
+    <button id="openModalBtn">Filtros</button>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <h2>Filtros</h2>
+        <form action="<%=ruta%>/<%=marca%>" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <div class="input-product">
+            <div class="inputFilter">
+              <label for="producto">Buscar Producto</label>
+              <input
+                id="buscar"
+                name="producto"
+                class="input is-info"
+                type="text"
+                placeholder="Buscar Producto..."
+              />
+            </div>
+
+            <div class="inputFilter">
+              <label for="startDate">Fecha de inicio</label>
+              <input type="date" name="startDate" id="dateFilter" />
+            </div>
+
+            <div class="inputFilter">
+              <label for="endDate">Fecha final</label>
+              <input type="date" name="endDate" id="dateFilter" />
+            </div>
+
+            <button type="submit" class="ingresar-btn">Filtrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <button id="openModalBtn-active">Filtros activos</button>
+    <div id="myModal-active" class="modal">
+      <div class="modal-content modal-content-active">
+        <h2>Filtros activos</h2>
+        <ul>
+          <% for (const key in filtrosActivos) { %>
+            <li>
+              <%= key %>: <%= filtrosActivos[key] %>
+            </li>
+            <% } %>
+        </ul>
+        <p>* : no hay filtro seleccionado</p>
+
+        <div class="input-product-active">
+          <form action="<%=ruta%>/<%=marca%>" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <button type="submit" class="ingresar-btn ingresar-btn-active">Eliminar filtros</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <%-include('includes/categorias.ejs', { marca:marca,ruta}) %> 
+    
+    <%if(errorProducto) { %>
+    <div id="error-message" class="cat-tittle">
+      <h4><%= errorProducto %></h4>
+    </div>
+    <% } %> <% if(categoria !== '*') { %>
+    <div class="cat-tittle">
+      <h1><%= categoria %></h1>
+    </div>
+    <% } %>
+
+    <% if(producto !=='*' ) { %>
+      <div class="cat-tittle">
+        <h1>
+          <%= producto %>
+        </h1>
+      </div>
+      <% } %>
+    
+  </div>
+
+  <div class="top-graficas">
+    <div id="promedio-mes-div" class="graphContainer">
+      <canvas id="promedioxMes"></canvas>
+    </div>
+
+    <div id="tasaContestacion" class="graphContainer">
+      <canvas id="tasaContestada"></canvas>
+    </div>
+  </div>
+
+  <div class="bottom-graficas">
+    <div id="respuesta-enviada-div" class="graphContainer">
+      <canvas id="respuestaEnviada"></canvas>
+    </div>
+
+    <div id="promedioEstrellaNumero" class="graphContainer">
+      <h3>Calificación promedio</h3>
+      <div id="estrella-numero">
+        <div id="divison">
+          <img
+            src="/images/Estrella vacia 11.png"
+            class="avatar"
+            alt="Avatar"
+            id="estrella1"
+          />
+          <img
+            src="/images/Estrella reyena 11.png"
+            class="avatar"
+            alt="Avatar"
+            id="estrella2"
+            style="--cut-value: <%=porcentaje%>%"
+          />
+        </div>
+        <h1><%= numAVGEstrella %></h1>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+  crossorigin="anonymous"
+></script>
+
+<script>
+  let promedioMes = JSON.parse('<%- JSON.stringify(promedioPuntajes) %>');
+  let tasaDeRespuesta = JSON.parse('<%- JSON.stringify(tasaDeRespuesta) %>');
+  let respuestasEnviadas = JSON.parse('<%- JSON.stringify(encuestasEnviadas) %>');
+
+  function handleOptionChange(selectElement) {
+    // Get the selected value
+    var selectedValue = selectElement.value;
+
+    console.log("Selected option:", selectedValue);
+    return selectedValue;
+  }
+</script>
+<script src="/js/dashboard.js"></script>
+<%-include('includes/footer.ejs')%>

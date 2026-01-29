@@ -1,0 +1,51 @@
+<%-include('../includes/navigation.ejs'), {
+    titulo: titulo,
+    marca:marca,
+    permisos: permisos
+} %>
+
+<head>
+    <link rel="stylesheet" href="/css/ayuda.css">
+</head>
+
+<h1>¿Con qué podemos ayudarte?</h1>
+<div class = "help-card-container">
+    
+        <div class = "help-card" onclick="window.location.href = '/ayuda/login/<%=marca%>';">
+            <i class='help-icon bx bxs-id-card icon'></i>
+            <p>Login</p>
+        </div>
+    <% for (let funcion of permisos) { %>
+        <% if (funcion.funcion == "ver") { %>
+        <div class = "help-card" onclick="window.location.href = '/ayuda/dashboard/<%=marca%>';">
+            <i class="help-icon bx bx-home icon"></i>
+            <p>Dashboard</p>
+            </div>
+        <div class = "help-card" onclick="window.location.href = '/ayuda/resenas/<%=marca%>';">
+            <i class="help-icon bx bx-star icon"></i>
+            <p>Reseñas</p>
+        </div>
+        <% } %>
+        <% if (funcion.funcion == "editar") { %>
+        <div class = "help-card" onclick="window.location.href = '/ayuda/correos/<%=marca%>';">
+            <i class="help-icon bx bx-envelope icon"></i>
+            <p>Correos</p>
+        </div>
+        <% } %>
+        <% if (funcion.funcion == "administracion") { %>
+        <div class = "help-card" onclick="window.location.href = '/ayuda/usuarios/<%=marca%>';">
+            <i class='help-icon bx bxs-user-plus icon'></i>
+            <p>Usuarios</p>
+        </div>
+        <% } %>
+        <% if (funcion.funcion == "ver") { %>
+        <div class = "help-card" onclick="window.location.href = '/ayuda/general/<%=marca%>';">
+            <i class='help-icon bx bxs-grid icon'></i>
+            <p>General</p>
+        </div>
+        <% } %>
+    <% } %>
+</div>
+
+
+<%-include('../includes/footer.ejs')%>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/css/styles.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/login_syles.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"/>
+    <title>LogIn</title>
+  </head>
+
+  <body>
+    <div class="title-web-app">
+      <h1>MagnusStellaCore</h1>
+    </div>
+    <div class="login-box box">
+      <div class="login-title title">
+        <h4>Log-In</h4>
+      </div>
+      <% if(typeof error !=='undefined' ){ %>
+      <div class="alert">
+        <p><%= error %></p>
+      </div>
+      <% } %>
+      <form action="/users/login" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <div class="credential-input">
+          <label for="name">Nombre de usuario:</label>
+          <input
+            type="email"
+            name="name"
+            id="username"
+            placeholder="Ingresa tu correo electronico"
+          />
+        </div>
+        <div class="credential-input">
+          <label for="password">Contraseña:</label>
+          <div class="passwordInput">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Ingresa tu contrasena"
+            />
+            <button type="button" id="togglePasswordBtn" onclick="togglePassword()">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+        <div class="ingresar-btn">
+          <button type="submit" class="btn">Ingresar</button>
+        </div>
+      </form>
+
+
+    </div>
+
+<script>
+  function togglePassword() {
+    var passwordInput = document.getElementById("password");
+    var togglePasswordBtn = document.getElementById("togglePasswordBtn");
+    var eyeIcon = togglePasswordBtn.querySelector("i");
+
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      eyeIcon.classList.remove("fa-eye");
+      eyeIcon.classList.add("fa-eye-slash");
+    } else {
+      passwordInput.type = "password";
+      eyeIcon.classList.remove("fa-eye-slash");
+      eyeIcon.classList.add("fa-eye");
+    }
+  }
+
+</script>
+
+

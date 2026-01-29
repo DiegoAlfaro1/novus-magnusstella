@@ -1,0 +1,45 @@
+.delete {
+    text-decoration: none;
+    color: var(--delete-color);
+    background-color: var(--button-color);
+    border: solid 0px;
+    border-radius: 7pt;
+}
+
+.delete:hover {
+    color: var(--delete-color-hover);
+    background-color: var(--toggle-color);
+}
+
+a.settings{
+    text-decoration: none;
+    color: var(--delete-color);
+    background-color: var(--button-color);
+    border: solid 0px;
+    border-radius: 7pt;
+}
+
+a.settings:hover {
+    color: var(--delete-color-hover);
+    background-color: var(--button-color-hover);
+}
+
+body.dark a.settings:link {
+  text-decoration: none;
+  color: var(--highlight);
+}
+
+body.dark a.settings:link:hover {
+  text-decoration: none;
+  color: var(--highlight2);
+}
+
+body.dark a.settings:visited {
+  text-decoration: none;
+  color: var(--highlight);
+}
+
+body.dark a.settings:visited:hover {
+  text-decoration: none;
+  color: var(--highlight2);
+}

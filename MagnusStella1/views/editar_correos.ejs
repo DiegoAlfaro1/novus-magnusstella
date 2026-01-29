@@ -1,0 +1,50 @@
+<%- include('includes/navigation.ejs') %>
+
+<head>
+  <link rel="stylesheet" href="/css/forms.css">
+</head>
+
+<div class="box-box box">
+  <div class="signup-title title">
+    <h5>Editar pregunta:</h5>
+  </div>
+  <form action="/emails/correos/editar" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <input type="hidden" name="idp" value="<%= idp %>" />
+    <input type="hidden" name="marca" value="<%= marca %>" />
+    <div class="credential-input">
+      <label class="label" for="pregunta">Pregunta:</label><br>
+      <input
+        class="input text-input"
+        type="text"
+        placeholder="Text input"
+        value="<%= pregunta[0].descripcion %>"
+        name="pregunta"
+        id="pregunta"
+      />
+    </div><br>
+    <div class="options-container">
+      <div class="credential-input">
+        <label class="label" for="password">Opciones:</label>
+        <% for (var j = 0; j < total_opciones; j++) { %>
+        <br>
+        <input
+          class="input option-input"
+          type="text"
+          placeholder="Text input"
+          value="<%= opciones[j].descripcion %>"
+          name="opcion_<%= opciones[j].idopciones %>"
+          id="<%= opciones[j].idopciones %>"
+          type="text"
+        /> <br>
+        <% } %>
+      </div>
+    </div><br>
+    <div class="button-container">
+      <input type="submit" value="Guardar" class="save-button" />&emsp;
+      <a class="cancel-button" href="/emails/correos/<%= marca %>">Cancelar</a>
+    </div>
+  </form>
+</div>
+
+<%- include('includes/footer.ejs') %>

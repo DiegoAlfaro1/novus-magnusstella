@@ -1,0 +1,191 @@
+<%- include('includes/navigation.ejs'), {
+    marca: marca,
+  } %>
+  
+  <head>
+      <link rel="stylesheet" href="/css/resenas.css">
+  </head>
+  
+  <div id="search-autocomplete" class="form-outline" data-mdb-input-init>
+      <div class="cat-search">
+          <button id="open_ModalBtn2" >Filtros</button>
+      
+          <div id="myModal2" class="modal2">
+            <div class="modal-content2">
+              <h2>Filtros</h2>
+              <form action="<%=ruta%>/<%=marca%>" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                <div class="input-product">
+                  <div class="inputFilter">
+                    <label for="orden">Ordenar por: </label>
+                    <select name="orden">
+                      <option value="ascendente">
+                      Puntaje más bajo
+                    </option>
+                    <option value="descendente">
+                      Puntaje más alto
+                    </option>
+                    </select>
+  
+                    
+                  </div>
+      
+                  <div class="inputFilter">
+                    <label for="startDate">Fecha de inicio</label>
+                    <input type="date" name="startDate" id="dateFilter" />
+                  </div>
+      
+                  <div class="inputFilter">
+                    <label for="endDate">Fecha final</label>
+                    <input type="date" name="endDate" id="dateFilter" />
+                  </div>
+      
+                  <button type="submit" class="ingresar-btn">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+      </div>
+      
+      <input type="search" id="buscar" class="form-control" placeholder="Busca tu producto"/>
+      <button type="button" class="btn btn-primary" data-mdb-ripple-init>
+          <i class="fas fa-search"></i>
+      </button>
+  </div>
+  
+  <div id="respuesta_ajax" class="respuesta_ajax">
+      <div class="item-boxes">
+          <% resenas.forEach(function(resena, index) { %>
+          <div class="item-container">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <a id="nombre-resena" href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"> <%= resena.title %></a>
+              <img src="/images/<%= marca %>/<%= resena.itemcode%>.jpg" class="img_producto">
+              <p id="item" style="font-weight: bold;"><%= resena.itemcode %></p>
+              <div class="estrellas">
+                  <% for (var i = 0; i < 5; i++) { %>
+                      <% if (i < resena.estrellas) { %>
+                          <i class='bx bxs-star' id="stars_y"></i>
+                      <% } else { %>
+                          <i class='bx bx-star' id="stars_g"></i>
+                      <% } %>
+                  <% } %>
+              </div>
+              
+              <p id="sub_question"><%= resena.resena_descrip %></p> 
+
+                <div class="switch-checkbox deshabilitado">
+                    <p id="fecha"><%= resena.fecha %></p>
+                    <input type="checkbox" disabled id="visibilidadCheckbox_<%= resena.id%>" <% if (resena.visibilidad == 0) { %> checked <% } %> > 
+                    <label for="visibilidadCheckbox" class="text"></label>
+                </div>
+
+              
+              <body data-marca="<%= marca %>">   
+              
+          </div>
+          <% if ((index + 1) % 2 === 0) { %>
+              <div class="clearfix"></div>
+          <% } %>
+          <% }); %>
+      </div>
+  </div>
+  
+  <script>
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+    const accion_asincrona = () => {
+        console.log('Buscando...');
+        const valor_busqueda = document.getElementById('buscar').value;
+        //función que manda la petición asíncrona
+        fetch('/reviews/resenas/<%= marca %>/buscar/' + valor_busqueda, {
+            method: 'GET'
+    
+        }).then((result) => {
+            return result.json(); //Regresa otra promesa
+        }).then((data) => {
+            document.getElementById('respuesta_ajax').innerHTML = '';
+    
+    
+            if (valor_busqueda.trim() === '') {
+                // Redirige al usuario a la ruta de todas las reseñas
+                window.location.href = `/reviews/resenas/<%= marca %>`;
+            } else {
+                // Si hay una búsqueda, mostrar los resultados de la búsqueda
+                if (data && data.resenas && data.resenas.length > 0) {
+                    const resenasHTML = data.resenas.map(resena => {
+                        return `
+                        <div class="item-container">
+                            <a href="/reviews/resenas_completas/<%= marca %>/${resena.idreview}">
+                                ${resena.titulo}
+                            </a>
+                            <img src="/images/<%= marca %>/${resena.idProducto}.jpg" class="img_producto">
+                            <p id="item" style="font-weight: bold;">${resena.idProducto} </p>
+                            <div class="estrellas">
+                                ${Array.from({ length: 5 }, (_, index) => {
+                                    return index < resena.puntaje ? '<i class="bx bxs-star" id="stars_y"></i>' : '<i class="bx bx-star" id="stars_g"></i>';
+                                }).join('')}
+                            </div>
+                            <p id="sub_question">${resena.descripcion}</p> 
+                                        
+                            <div class="switch-checkbox deshabilitado">
+                                <p id="fecha">${resena.fecha}</p>
+                                <input type="checkbox" disabled id="visibilidadCheckbox_<%= resenas.idreview %>" <% if (resenas.visibilidad == 0) { %> checked <% } %> >
+
+                                <label for="visibilidadCheckbox" class="text"></label>
+                            </div>
+                            
+                        </div>
+                    `;
+                    }).join('');
+    
+                    document.getElementById('respuesta_ajax').innerHTML = resenasHTML;
+                } else {
+                    document.getElementById('respuesta_ajax').innerHTML = 'No se encontraron reseñas.';
+                }
+            }
+        }).catch(err => {
+            console.log(err);
+        });
+    };
+    
+    document.getElementById('buscar').onkeyup = accion_asincrona;
+  
+  let modal2 = document.getElementById("myModal2");
+  
+  // Get the button that opens the modal
+  let btn2 = document.querySelector("#open_ModalBtn2")
+  
+  // Get the <span> element that closes the modal
+  let span2 = document.getElementsByClassName("close")[0];
+  
+  btn2.onclick = function () {
+      console.log("click");
+      modal2.style.display = "block";
+    };
+  
+    span2.onclick = function () {
+      modal2.style.display = "none";
+    };
+  
+    // Cuando el usuario hace clic en cualquier lugar fuera del modal, ciérralo
+    window.onclick = function (event) {
+      if (event.target == modal2) {
+        modal2.style.display = "none";
+      }
+    };
+  
+    // Cuando el usuario presiona la tecla Escape, cierra el modal
+    window.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        modal2.style.display = "none";
+      }
+    });
+  
+  </script>
+  
+  
+  
+  <%-include('includes/footer.ejs')%>
+  
+  

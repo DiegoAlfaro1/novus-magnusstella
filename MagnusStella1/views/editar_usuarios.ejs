@@ -1,0 +1,96 @@
+<%- include('includes/navigation.ejs')%>
+<head>
+  <link rel="stylesheet" href="/css/forms.css">
+</head>
+
+  <% for (let usuario of usuarios) { %>
+    <div class="box box-box">
+      <div class="signup-title title">
+        <h5>Editar usuario:</h5> 
+      </div>
+      
+      <form id="editUserForm" action="/usuarios/editar/<%= usuario.idUsuario %>" method="POST">
+        <input type="hidden" name="uIdusuario" value="<%= usuario.idUsuario %>" />
+        <input type="hidden" name="uPassword" value="<%= usuario.Password %>" />
+        <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" />
+        <div class="credential-input">
+
+          <label class="label" for="nombre">Nombre: </label>
+          <input class="input text-input" type="text" placeholder="Text input" value="<%= usuario.Nombre%>"
+            name="nombre" id="nombre" type="text" required /> <br><br>
+
+          <label class="label" for="correo">Correo: </label>
+          <input class="input text-input" type="email" placeholder="Text input" value="<%= usuario.Correo%>"
+            name="correo" id="correo" type="email" required /> <br><br>
+
+          <label class="label" for="password">Password: </label>
+
+          <div class="passwordInput">
+            <input class="input text-input" type="password" placeholder="Text input" value="" name="password" id="password"
+              type="text" />
+            <button type="button" id="togglePasswordBtn" onclick="togglePassword()">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <span id="passwordError" class="error"></span> <br>
+
+          <label class="label" for="idrol">Rol: </label>
+          <select name="idrol" class="type-select" id="idrol">
+            <option value="1">Administrador</option>
+            <option value="2">Analítica</option>
+            <option value="3">CRM</option>
+          </select><br><br>
+
+          <label class="label" for="estado">Estado: </label>
+          <select name="estado" class="type-select" id="estado">
+            <option value="1">Activo</option>
+            <option value="0">Inactivo</option>
+          </select><br><br>
+        </div>
+        <div class="button-container">
+          <input type="submit" value=" Guardar " class="save-button" />&emsp;
+          <a href="/usuarios/1/<%= marca %>" class="cancel-button">Cancelar</a>
+        </div>
+      </form>
+    </div>
+    <% } %>
+      <%- include('includes/footer.ejs') %>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+          $(document).ready(function () {
+            $('#password').on('input', function () {
+              var password = $(this).val();
+              var csrfToken = $('input[name="_csrf"]').val();
+
+              // Make an AJAX request to the server to validate the password
+              $.ajax({
+                type: 'POST',
+                url: '/users/validate-password',
+                data: { password: password, _csrf: csrfToken },
+                success: function (response) {
+                  if (response.valid) {
+                    // Password is valid, clear the error message
+                    $('#passwordError').text('');
+                  } else {
+                    // Password is invalid, display the error message
+                    $('#passwordError').text(response.message);
+                  }
+                },
+                error: function () {
+                  alert('An error occurred while validating the password.');
+                }
+              });
+            });
+
+            // Prevent form submission if password is invalid
+            $('#editUserForm').submit(function (event) {
+              var passwordError = $('#passwordError').text();
+              if (passwordError) {
+                event.preventDefault();
+                alert('Please enter a valid password.');
+              }
+            });
+          });
+        </script>

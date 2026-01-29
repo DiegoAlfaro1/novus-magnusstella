@@ -1,0 +1,36 @@
+<% if (marca == "LU1") { %>
+
+<div class="dropdown category">
+  <button class="dropbtn cat-btn">Categoría</button>
+  <div class="dropdown-content cat-content">
+    <a href="<%=ruta%>/<%=marca%>">Todo</a>
+    <a href="<%=ruta%>/<%=marca%>/Colchon">Colchones</a>
+    <a href="<%=ruta%>/<%=marca%>/Almohadas">Almohadas</a>
+    <a href="<%=ruta%>/<%=marca%>/Cama">Camas</a>
+  </div>
+</div>
+
+<% } else if(marca == "MA1") { %>
+
+<div class="dropdown category">
+  <button class="dropbtn cat-btn">Categoría</button>
+  <div class="dropdown-content cat-content">
+    <a href="<%=ruta%>/<%=marca%>">Todo</a>
+    <a href="<%=ruta%>/<%=marca%>/Maletas">Maletas</a>
+    <a href="<%=ruta%>/<%=marca%>/Bolsas">Bolsas</a>
+    <a href="<%=ruta%>/<%=marca%>/Accesorios">Accesorios</a>
+  </div>
+</div>
+<% } else if(marca == "NO1") { %>
+
+<div class="dropdown category">
+  <button class="dropbtn cat-btn">Categoría</button>
+  <div class="dropdown-content cat-content">
+    <a href="<%=ruta%>/<%=marca%>">Todo</a>
+    <a href="<%=ruta%>/<%=marca%>/Blancos">Blancos</a>
+    <a href="<%=ruta%>/<%=marca%>/Almohadas">Almohadas</a>
+    <a href="<%=ruta%>/<%=marca%>/Cama">Camas</a>
+  </div>
+</div>
+
+<% } %>

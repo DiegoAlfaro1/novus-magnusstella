@@ -1,0 +1,110 @@
+.form-resenas{
+    width: 100%;
+    
+}
+.respuesta_ajax{
+    width: 100%;        
+}
+.item-boxes{
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+body {
+    padding-bottom: 0%;
+}
+
+.btn{
+    background-color: var(--nav-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 19pt;
+    padding: 0;
+}
+
+
+.switch-checkbox {
+  padding-top: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  background: var(--body-color);
+  align-items: center;
+  border-radius: 5px;
+  padding: auto right;
+  justify-content: space-between;
+}
+
+.switch-checkbox input {
+  outline: none;
+  height: 20px;
+  /* Ajustado */
+  width: 50px;
+  /* Ajustado */
+  border-radius: 50px;
+  appearance: none;
+  position: relative;
+  background: #668bbb;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+  transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.switch-checkbox input:checked {
+  background: #e6e6e6;
+}
+
+.switch-checkbox input:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 20px;
+  /* Ajustado */
+  background: linear-gradient(#fff, #f2f2f2, #e6e6e6, #d9d9d9);
+  border-radius: 50px;
+  transform: scale(0.85);
+  transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+input:checked:before {
+  left: 27px;
+  /* Ajustado */
+}
+
+input:checked ~ .text:before {
+  content: "Deshabilitado";
+  font-size: 10px;
+  /* Ajustado */
+  font-weight: 500;
+  color: var(--disabled-color);
+}
+
+.switch-checkbox .text:before {
+  content: "Habilitado";
+  color: var(--edit-color);
+  font-size: 11px;
+  /* Ajustado */
+}
+
+.switch-checkbox.deshabilitado input {
+    background: rgb(107, 107, 107);
+}
+
+.switch-checkbox.deshabilitado input:checked {
+  background: #afafaf;
+}
+
+#nombre-resena{
+  style: inline;
+  color: var(--title-color);
+}
+
+#nombre-resena:hover{
+  style: inline;
+  color: var(--title-color-hover);
+}

@@ -1,0 +1,24 @@
+<%-include('includes/navigation.ejs', { titulo: titulo,marca:marca}) %>
+
+<div class="graficas">
+  <div class="top-graficasFiltrada">
+    <div id="promedio-mes-div">
+      <canvas id="promedioxMes"></canvas>
+    </div>
+
+    <div>
+      <canvas id="tasaContestadaFiltrada"></canvas>
+    </div>
+  </div>
+
+  <div class="bottom-graficas">
+    <div id="respuesta-enviada-div">
+      <canvas id="respuestaEnviadaFiltrada"></canvas>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<%-include('includes/footer.ejs')%>

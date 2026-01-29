@@ -1,0 +1,171 @@
+<%- include('includes/navigation.ejs') %>
+
+<head>
+    <link rel="stylesheet" href="/css/correos.css">
+</head>
+
+<div class="correos-container">
+    <div class="editor-de-preguntas">
+        <h2>Configuración</h2><div class="blankspace"></div>
+
+    <form id="form-dias">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <label for="dias">Días a los que se envía la encuesta:</label>
+      <input type="number" id="dias" name="dias" min="0" max="365" value="<%= dias %>" />&emsp;
+      <button type="button" id="btn-enviar-dias" class="subir boton">Guardar</button>
+    </form><div class="blankspace"></div>
+        
+ 
+        <% for (var i = 0; i < total; i++) { %>
+            <div class="ques-container" id="ques_<%= idp[i].idPregunta%>"> 
+                <h3><%= preguntas[i].descripcion %><a href="/emails/correos/editar/<%= marca %>/<%= idp[i].idPregunta %>" class="settings" title="Editar" data-placement="top" data-toggle="tooltip"><i class='bx bxs-edit-alt'></i></a>
+                    <a href="#" class="delete" id="delete-button_<%= idp[i].idPregunta%>" title="Borrar" data-placement="top" data-toggle="tooltip"><i class='bx bxs-trash'></i></a></h3>
+            </div>
+        <% } %>
+
+        <a href="/emails/correos/crear/<%= marca %>" class="add-ques-button boton">Añadir pregunta + </a>
+
+    </div>
+    <body data-marca="<%= marca %>">
+
+    <div class="preview-html">
+        <div class="contenido">
+            <img src="/images/<%= marca %>.png" height="200" width="100%">
+            <h4><b>Hola user,</b></h4>
+            <p id="sub_question">Has comprado recientemente 'producto' <br> ¿Nos cuentas tu experiencia?</p>
+            <img id="producto_img" src="/images/<%= marca %>producto.png" height="130">
+            <div class="rating-box">
+                <h5 id="question_text"><b>¿Cuál es su calificación general?</b></h5>
+                <div class="estrellas">
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                    <i class='bx bxs-star'></i>
+                </div>
+            </div>
+            <h4><b>Título de tu reseña: </b></h4>
+            <form>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <input type="text" id="title_rev" name="titulo_review" placeholder="Título"><br>
+            </form>
+            <h4><b>Reseña: </b></h4>
+            <textarea name="descripcion_review" id="description_rev" cols="35" rows="4" placeholder="Escribe aquí tu reseña"></textarea>
+            <div id="survey-form">
+                <% for (var i = 0; i < preguntas.length; i++) { %>
+                    <br>
+                    <h4><b><%= preguntas[i].descripcion %></b></h4>
+                    <% if (tipos[i][0].tipo == 1) { %>
+                        <p id="sub_question">Elige una de las siguientes opciones</p>
+                        <select name="answer-<%= preguntas[i].idPregunta %>">
+                            <% opciones[i].forEach(opcion => { %>
+                                <option value="<%= opcion.idOpcion %>"><%= opcion.descripcion %></option>
+                            <% }); %>
+                        </select>
+                    <% } else if (tipos[i][0].tipo == 2) { %>
+                        <% opciones[i].forEach(opcion => { %>
+                            <textarea name="answer-<%= preguntas[i].idPregunta %>" id="option-<%= opcion.idOpcion %>" cols="35" rows="3" placeholder="<%= opcion.descripcion %>"></textarea>
+                            <br>
+                        <% }); %>
+                    <% } else if ( tipos[i][0].tipo == 3) { %>
+                        <p id="sub_question">Elige una o varias de las siguientes opciones</p>
+                        <% opciones[i].forEach(opcion => { %>
+                            <input type="checkbox" id="option-<%= opcion.idOpcion %>" name="answer-<%= preguntas[i].idPregunta %>" value="<%= opcion.idOpcion %>">
+                            <label for="option-<%= opcion.idOpcion %>"><%= opcion.descripcion %></label><br>
+                        <% }); %>
+                    <% } %>
+                <% } %>
+            </div>
+            
+        
+
+            <div class="submit-button-container">
+                <button type="submit" class="submit-button">¡Envía tu reseña!</button>
+            </div>
+        </div>
+    </div>
+</div>  
+ 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Obtiene todos los botones con la clase delete.
+    const deleteButtons = document.querySelectorAll('.delete');
+
+    // Itera en cada botón.
+    deleteButtons.forEach(button => {
+
+        // Al hacer click en el botón:
+        button.addEventListener('click', function(event) {
+               
+            event.preventDefault(); // Evitar el comportamiento predeterminado del enlace.
+            // Mostrar ventana de confirmación.
+            const confirmDelete = confirm('¿Estás seguro de que quieres eliminar esta pregunta?');
+
+            if (confirmDelete) {
+                // Obtener el ID de la pregunta .
+                const idPregunta = this.id.split("_")[1];  
+                if (idPregunta) {
+                    deletePregunta(idPregunta); //Borra la pregunta en la db.
+                    const pregunta = document.getElementById('ques_' + idPregunta); //Borra la pregunta en el html.
+                    pregunta.remove();
+                }
+            }
+        });
+    });
+});
+
+// Función para llamar a la función delete del modelo
+async function deletePregunta(idP) {
+    try {
+        const response = await fetch(`/emails/delete/${idP}`, { //Manda a llamar un método delete en esta ruta.
+            method: 'DELETE',
+            headers: {
+                    "Content-Type": "application/json",
+                    'X-CSRF-Token': '<%= csrfToken %>' 
+            },
+        });
+        if (response.ok) {
+        } else {
+            console.error('Error al eliminar la pregunta:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error al eliminar la pregunta:', error);
+    }
+}
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const btnEnviarDias = document.getElementById('btn-enviar-dias');
+    const marca = document.body.getAttribute('data-marca');
+    btnEnviarDias.addEventListener('click', function(event) {
+        event.preventDefault(); 
+
+        const newDiasValue = document.getElementById('dias').value;
+        
+
+        fetch(`/emails/correos/actualizarDias/${marca}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': '<%= csrfToken %>' 
+            },
+            body: JSON.stringify({ dias: newDiasValue })
+        })
+        .then(response => {
+            if (response.ok) {
+                document.getElementById('dias').value = newDiasValue;
+                console.log('¡Actualización exitosa!');
+            } else {
+                console.error('Error al actualizar los días:', response.statusText);
+            }
+        })
+        .catch(error => {
+            console.error('Error al actualizar los días:', error);
+        });
+    });
+
+});
+</script>
+<%- include('includes/footer.ejs') %>

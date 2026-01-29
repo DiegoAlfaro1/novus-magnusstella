@@ -1,0 +1,115 @@
+<%- include('includes/navigation.ejs') %>
+
+<link rel="stylesheet" href="/ccs/usuarios-resenia.css" />
+<input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" />
+
+<div class="container-fluid">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="text">
+          <h2><b>Control de usuarios</b></h2>
+        </div>
+      </div>
+
+      <div id="respuesta_ajax" style="
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      align-content: space-between;
+      align-items: stretch;
+  ">
+        <div id="notificacion">
+          <% if(usuarios.length < 1) { %>
+          <div class="notification is-info">No existen Cambios.</div>
+          <% } %>
+        </div>
+
+        <div class="div_grafica" style="width: 80%;">
+          <canvas id="myChart"></canvas>
+        </div>
+         
+
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Id#</th>
+              <th>Usuario</th>
+              <th>Accion</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% let total = 0 %> 
+            <% let modificados = 0 %> 
+            <% let creados = 0 %>
+            <% let eliminados = 0 %> 
+
+            <% for (let usuario of usuarios) { %> 
+            <% total += 1 %> 
+            <% if (usuario.Accion == "Alta Usuario") { creados += 1}%> 
+            <% if (usuario.Accion == "Baja Usuario") { eliminados += 1}%>
+            <% if (usuario.Accion == "Modificó Usuario") { modificados += 1}%>
+            <tr>
+              <td><%= usuario.idHistorial %></td>
+              <td><%= usuario.Usuario %></td>
+              <td><%= usuario.Accion %></td>
+              <td><%= usuario.Fecha %></td>
+            </tr>
+            <% }; %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="clearfix">
+        <div class="hint-text">Movimientos totales: <b><%= total %></b></div>
+        <ul class="pagination">
+          <input type="hidden" id="num_creados" value="<%= creados %>" />
+          <input type="hidden" id="num_eliminados" value="<%= eliminados %>" />
+          <input type="hidden" id="num_modificados" value="<%= modificados %>" />
+
+          <li class="page-item">Creados: <b><%= creados %></b></li>
+          <li class="page-item">Eliminados: <b><%= eliminados %></b></li>
+          <li class="page-item">Modificados: <b><%= modificados %></b></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  let num_creados = document.getElementById('num_creados').value
+  let num_eliminados = document.getElementById('num_eliminados').value
+  let num_modificados = document.getElementById('num_modificados').value
+
+  const atx = document.getElementById('myChart');
+
+  let miChart = new Chart(atx, {
+    type: 'bar',
+    data: {
+      labels: ['Creados', 'Eliminados', 'Modificados'],
+      datasets: [{
+        label: 'Cantidad de Movimientos',
+        data: [ num_creados, num_eliminados, num_modificados],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // console.log(miChart)
+
+</script>
+
+<%- include('includes/footer.ejs') %>
