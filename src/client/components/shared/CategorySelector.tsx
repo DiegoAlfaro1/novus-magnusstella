@@ -30,9 +30,22 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({ basePath }) => {
     <div className="dropdown category">
       <button className="dropbtn cat-btn">Categoría</button>
       <div className="dropdown-content cat-content">
-        <a onClick={handleAllClick}>Todo</a>
+        <a 
+          href="#" 
+          role="button"
+          onClick={(e) => { e.preventDefault(); handleAllClick(); }}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleAllClick(); } }}
+        >
+          Todo
+        </a>
         {categories[marca]?.map((cat) => (
-          <a key={cat} onClick={() => handleCategoryClick(cat)}>
+          <a 
+            key={cat} 
+            href="#"
+            role="button"
+            onClick={(e) => { e.preventDefault(); handleCategoryClick(cat); }}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCategoryClick(cat); } }}
+          >
             {cat}
           </a>
         ))}

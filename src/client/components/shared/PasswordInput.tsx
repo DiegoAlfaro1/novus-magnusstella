@@ -21,7 +21,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ name, id, placeholder }) 
         id={id}
         placeholder={placeholder}
       />
-      <button type="button" onClick={togglePassword}>
+      <button type="button" id="togglePasswordBtn" onClick={togglePassword} aria-label="Toggle password visibility">
         <i className={`fa ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`} aria-hidden="true"></i>
       </button>
     </div>

@@ -46,7 +46,12 @@ const BrandSelector: React.FC<BrandSelectorProps> = ({ currentBrand, currentPath
       </button>
       <i className="bx bxs-chevron-down icono"></i>
       <div className="dropdown-content dropdown-content-marca">
-        <a onClick={() => handleBrandChange('LU1')}>
+        <a 
+          href="#" 
+          role="button"
+          onClick={(e) => { e.preventDefault(); handleBrandChange('LU1'); }}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleBrandChange('LU1'); } }}
+        >
           <img
             className="select-brand"
             data-value="LU1"
@@ -56,7 +61,12 @@ const BrandSelector: React.FC<BrandSelectorProps> = ({ currentBrand, currentPath
             alt="Logo de Luuna"
           />
         </a>
-        <a onClick={() => handleBrandChange('NO1')}>
+        <a 
+          href="#" 
+          role="button"
+          onClick={(e) => { e.preventDefault(); handleBrandChange('NO1'); }}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleBrandChange('NO1'); } }}
+        >
           <img
             className="select-brand"
             data-value="NO1"
@@ -66,7 +76,12 @@ const BrandSelector: React.FC<BrandSelectorProps> = ({ currentBrand, currentPath
             alt="Logo de Nooz"
           />
         </a>
-        <a onClick={() => handleBrandChange('MA1')}>
+        <a 
+          href="#" 
+          role="button"
+          onClick={(e) => { e.preventDefault(); handleBrandChange('MA1'); }}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleBrandChange('MA1'); } }}
+        >
           <img
             className="select-brand"
             data-value="MA1"

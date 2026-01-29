@@ -16,7 +16,7 @@ export const useSidebarToggle = () => {
     return () => {
       toggle?.removeEventListener('click', handleToggle);
     };
-  }, []);
+  }, []); // Empty array is intentional - we only want to set up event listeners once on mount
 };
 
 export const useDarkMode = () => {
@@ -24,6 +24,7 @@ export const useDarkMode = () => {
     const body = document.querySelector('body');
     const modeToggle = document.querySelector('.dark-light');
 
+    // Initialize dark mode from localStorage
     const getMode = localStorage.getItem('mode');
     if (getMode && getMode === 'dark-mode') {
       body?.classList.add('dark');
@@ -45,5 +46,5 @@ export const useDarkMode = () => {
     return () => {
       modeToggle?.removeEventListener('click', handleModeToggle);
     };
-  }, []);
+  }, []); // Empty array is intentional - we only want to set up event listeners once on mount
 };

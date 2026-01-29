@@ -7,16 +7,18 @@ interface VisibilityToggleProps {
 }
 
 const VisibilityToggle: React.FC<VisibilityToggleProps> = ({ checked, disabled = false, id }) => {
+  const inputId = `visibilidadCheckbox_${id}`;
+  
   return (
     <div className="switch-checkbox deshabilitado">
       <input
         type="checkbox"
         disabled={disabled}
-        id={`visibilidadCheckbox_${id}`}
+        id={inputId}
         checked={checked}
         readOnly
       />
-      <label htmlFor="visibilidadCheckbox" className="text"></label>
+      <label htmlFor={inputId} className="text"></label>
     </div>
   );
 };

@@ -100,11 +100,11 @@ input:checked ~ .text:before {
 }
 
 #nombre-resena{
-  style: inline;
+  display: inline;
   color: var(--title-color);
 }
 
 #nombre-resena:hover{
-  style: inline;
+  display: inline;
   color: var(--title-color-hover);
 }

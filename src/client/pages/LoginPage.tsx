@@ -31,7 +31,7 @@ const LoginPage: React.FC = () => {
               type="email"
               name="name"
               id="username"
-              placeholder="Ingresa tu correo electronico"
+              placeholder="Ingresa tu correo electrónico"
             />
           </div>
           <div className="credential-input">
@@ -39,7 +39,7 @@ const LoginPage: React.FC = () => {
             <PasswordInput
               name="password"
               id="password"
-              placeholder="Ingresa tu contrasena"
+              placeholder="Ingresa tu contraseña"
             />
           </div>
           <div className="ingresar-btn">

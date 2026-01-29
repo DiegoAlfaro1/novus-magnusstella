@@ -11,7 +11,7 @@
   align-items: baseline;
   margin-left: 20px;
   margin-bottom: 30px;
-  color: (--edit-color);
+  color: var(--edit-color);
   font-weight: 500;
   width: 450px;
 }

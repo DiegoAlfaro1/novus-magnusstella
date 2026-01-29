@@ -156,7 +156,7 @@ body.dark.side_bar{
 
 .side_bar li .icon {
   display: flex;
-  align-items: first center;
+  align-items: center;
   justify-content: center;
   min-width: 32px;
   font-size: 30px;
@@ -246,8 +246,8 @@ header .image-text .header-text {
 }
 
 .logo-zebrands img {
-  width: 486 px;
-  height: 96 px;
+  width: 486px;
+  height: 96px;
 }
 
 .side_bar.close .logo {
