@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import { Brand, User } from '../../types';
+import { useSidebarToggle, useDarkMode } from '../../hooks/useLayout';
 
 interface LayoutProps {
   children: ReactNode;
@@ -13,6 +14,9 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children, titulo, user }) => {
   const { marca } = useParams<{ marca: Brand }>();
   const brand = marca || 'LU1';
+
+  useSidebarToggle();
+  useDarkMode();
 
   return (
     <>

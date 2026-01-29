@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import FilterModal from '../components/shared/FilterModal';
+import CategorySelector from '../components/shared/CategorySelector';
 import { Brand, User, DashboardData } from '../types';
 import { Line, Bar } from 'react-chartjs-2';
 import {
@@ -65,7 +66,7 @@ const mockDashboardData: DashboardData = {
 };
 
 const DashboardPage: React.FC = () => {
-  const { marca } = useParams<{ marca: Brand }>();
+  const { marca, categoria } = useParams<{ marca: Brand; categoria?: string }>();
   const [dashboardData] = useState<DashboardData>(mockDashboardData);
   const [user] = useState<User>({
     id: 1,
@@ -108,6 +109,14 @@ const DashboardPage: React.FC = () => {
               </div>
             </form>
           </FilterModal>
+
+          <CategorySelector basePath="/graphics/dashboard" />
+
+          {categoria && (
+            <div className="cat-tittle">
+              <h1>{categoria}</h1>
+            </div>
+          )}
         </div>
 
         <div className="top-graficas">

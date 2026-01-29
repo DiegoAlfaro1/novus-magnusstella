@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import ReviewCard from '../components/shared/ReviewCard';
 import FilterModal from '../components/shared/FilterModal';
+import CategorySelector from '../components/shared/CategorySelector';
 import { Brand, User, Review } from '../types';
 import '../styles/resenas.css';
 
@@ -37,7 +38,7 @@ const mockReviews: Review[] = [
 ];
 
 const ReviewsPage: React.FC = () => {
-  const { marca } = useParams<{ marca: Brand }>();
+  const { marca, categoria } = useParams<{ marca: Brand; categoria?: string }>();
   const [reviews] = useState<Review[]>(mockReviews);
   const [user] = useState<User>({
     id: 1,
@@ -77,6 +78,14 @@ const ReviewsPage: React.FC = () => {
               </div>
             </form>
           </FilterModal>
+
+          <CategorySelector basePath="/reviews/resenas" />
+
+          {categoria && (
+            <div className="cat-tittle">
+              <h1>{categoria}</h1>
+            </div>
+          )}
         </div>
 
         <input
