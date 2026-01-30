@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import { Brand, User } from '../../types';
 import { useSidebarToggle, useDarkMode } from '../../hooks/useLayout';
+import { useBrandTheme } from '../../hooks/useBrandTheme';
 
 interface LayoutProps {
   children: ReactNode;
@@ -17,6 +18,7 @@ const Layout: React.FC<LayoutProps> = ({ children, titulo, user }) => {
 
   useSidebarToggle();
   useDarkMode();
+  useBrandTheme(brand);
 
   return (
     <>

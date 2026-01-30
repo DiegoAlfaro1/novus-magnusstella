@@ -108,3 +108,31 @@ input:checked ~ .text:before {
   display: inline;
   color: var(--title-color-hover);
 }
+/* Fix overlapping in review cards */
+.item-container {
+  padding: 15px;
+  margin: 10px;
+  border: 2px solid var(--edit-color);
+  border-radius: 10px;
+  background: var(--body-color);
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-container .switch-checkbox {
+  margin-top: auto;
+  padding: 10px 5px;
+  min-height: 50px;
+}
+
+.item-container #fecha {
+  margin: 0;
+  padding: 0 5px;
+}
+
+.item-container .switch-checkbox .text {
+  margin-left: 10px;
+  white-space: nowrap;
+}

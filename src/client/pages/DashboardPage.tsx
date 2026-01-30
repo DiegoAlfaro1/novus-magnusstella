@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import FilterModal from '../components/shared/FilterModal';
 import CategorySelector from '../components/shared/CategorySelector';
 import { Brand, User, DashboardData } from '../types';
-import { Line, Bar } from 'react-chartjs-2';
+import { Line, Bar, Doughnut, Pie } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,6 +12,7 @@ import {
   PointElement,
   LineElement,
   BarElement,
+  ArcElement,
   Title,
   Tooltip,
   Legend,
@@ -23,6 +24,7 @@ ChartJS.register(
   PointElement,
   LineElement,
   BarElement,
+  ArcElement,
   Title,
   Tooltip,
   Legend
@@ -63,6 +65,64 @@ const mockDashboardData: DashboardData = {
   },
   numAVGEstrella: 4.5,
   porcentaje: 90,
+};
+
+// Additional mock data for new charts
+const reviewsByRating = {
+  labels: ['5 Estrellas', '4 Estrellas', '3 Estrellas', '2 Estrellas', '1 Estrella'],
+  datasets: [
+    {
+      label: 'Distribución de Reseñas',
+      data: [145, 98, 45, 23, 12],
+      backgroundColor: [
+        'rgba(75, 192, 192, 0.8)',
+        'rgba(54, 162, 235, 0.8)',
+        'rgba(255, 206, 86, 0.8)',
+        'rgba(255, 159, 64, 0.8)',
+        'rgba(255, 99, 132, 0.8)',
+      ],
+    },
+  ],
+};
+
+const topProducts = {
+  labels: ['Colchón Premium', 'Almohada Gel', 'Base Ajustable', 'Protector', 'Sábanas'],
+  datasets: [
+    {
+      label: 'Top 5 Productos',
+      data: [89, 76, 65, 54, 48],
+      backgroundColor: 'rgba(153, 102, 255, 0.6)',
+      borderColor: 'rgba(153, 102, 255, 1)',
+      borderWidth: 1,
+    },
+  ],
+};
+
+const customerSentiment = {
+  labels: ['Positivo', 'Neutral', 'Negativo'],
+  datasets: [
+    {
+      data: [243, 45, 35],
+      backgroundColor: [
+        'rgba(75, 192, 192, 0.8)',
+        'rgba(255, 206, 86, 0.8)',
+        'rgba(255, 99, 132, 0.8)',
+      ],
+    },
+  ],
+};
+
+const monthlyGrowth = {
+  labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+  datasets: [
+    {
+      label: 'Crecimiento Mensual (%)',
+      data: [5, 12, 8, 15, 10, 18],
+      backgroundColor: 'rgba(255, 159, 64, 0.6)',
+      borderColor: 'rgba(255, 159, 64, 1)',
+      borderWidth: 1,
+    },
+  ],
 };
 
 const DashboardPage: React.FC = () => {
@@ -121,17 +181,17 @@ const DashboardPage: React.FC = () => {
 
         <div className="top-graficas">
           <div id="promedio-mes-div" className="graphContainer">
-            <Line data={dashboardData.promedioPuntajes} />
+            <Line data={dashboardData.promedioPuntajes} options={{ maintainAspectRatio: true }} />
           </div>
 
           <div id="tasaContestacion" className="graphContainer">
-            <Line data={dashboardData.tasaDeRespuesta} />
+            <Line data={dashboardData.tasaDeRespuesta} options={{ maintainAspectRatio: true }} />
           </div>
         </div>
 
         <div className="bottom-graficas">
           <div id="respuesta-enviada-div" className="graphContainer">
-            <Bar data={dashboardData.encuestasEnviadas} />
+            <Bar data={dashboardData.encuestasEnviadas} options={{ maintainAspectRatio: true }} />
           </div>
 
           <div id="promedioEstrellaNumero" className="graphContainer">
@@ -154,6 +214,30 @@ const DashboardPage: React.FC = () => {
               </div>
               <h1>{dashboardData.numAVGEstrella}</h1>
             </div>
+          </div>
+        </div>
+
+        <div className="additional-graficas">
+          <div className="graphContainer">
+            <h3>Distribución por Calificación</h3>
+            <Doughnut data={reviewsByRating} options={{ maintainAspectRatio: true }} />
+          </div>
+
+          <div className="graphContainer">
+            <h3>Top 5 Productos Más Reseñados</h3>
+            <Bar data={topProducts} options={{ maintainAspectRatio: true, indexAxis: 'y' }} />
+          </div>
+        </div>
+
+        <div className="additional-graficas">
+          <div className="graphContainer">
+            <h3>Sentimiento del Cliente</h3>
+            <Pie data={customerSentiment} options={{ maintainAspectRatio: true }} />
+          </div>
+
+          <div className="graphContainer">
+            <h3>Crecimiento de Reseñas</h3>
+            <Bar data={monthlyGrowth} options={{ maintainAspectRatio: true }} />
           </div>
         </div>
       </div>
