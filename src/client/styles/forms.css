@@ -1,0 +1,171 @@
+
+.main-content{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+
+
+.box-box{
+    width: 40%;
+    min-width: 700px;
+    background-color: var(--forms-color);
+    border-radius: 1em;
+    overflow: auto;
+}
+
+/* .title-container{
+    background-color: var(--nav-color);
+    border-radius: 0.5em;
+} */
+
+.title{
+    /* display: flex;
+    flex-direction: row;
+    height: 100px;
+    width: 100%;
+    justify-content: center;
+    align-items: center; */
+    font-size: 33px;
+    color: var(--edit-color);
+}
+
+.text-input{
+    width: 100%;
+    background-color: var(--written-input-color) !important;
+    color: var(--search-text);
+    border: solid 0px;
+    border-radius: 10pt;
+}
+
+.button-container{
+    display: flex;
+    justify-content: right;
+}
+
+.save-button{
+    background-color: var(--highlight);
+    font-size: 12pt;
+    border: solid 0px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.save-button:hover{
+    background-color: var(--highlight2);
+}
+
+a.cancel-button{
+    background-color: var(--delete-color);
+    font-size: 11pt;
+    border: solid 0px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+a.cancel-button:hover{
+    background-color: var(--delete-color-hover);
+    color: #fff;
+}
+
+a.cancel-button:visited{
+    background-color: var(--delete-color);
+    font-size: 11pt;
+    border: solid 0px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+a.cancel-button:visited:hover{
+    background-color: var(--delete-color-hover);
+    color: #fff;
+}
+
+.add-option-button{
+    background-color: var(--highlight2);
+    font-size: 11pt;
+    border: solid 0px;
+    border-radius: 10px;
+    color: #fff;
+    width:100%;
+}
+
+.add-option-button:hover{
+    background-color: var(--highlight3);
+}
+
+.type-select{
+    width: 70%;
+    background-color: var(--written-input-color);
+    color: var(--search-text);
+    border: solid 0px;
+    border-radius: 10pt;
+}
+
+.options-container{
+    width: 100%;
+    background-color: var(--written-input-color);
+    color: var(--search-text);
+    border: solid 0px;
+    border-radius: 10pt;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.opcion{
+    width: 100%;
+}
+
+.option-input{
+    width: 100%;
+    background-color: var(--help-card-color);
+    color: var(--search-text);
+    border: solid 0px;
+    border-radius: 10pt;
+}
+
+.delete-button{
+    color: var(--delete-color)
+}
+
+.delete-button:hover{
+    color: var(--delete-color-hover)
+}
+
+
+.passwordInput {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+}
+
+#password {
+border-top-right-radius: 0px;
+border-bottom-right-radius: 0px;
+/* margin-right: 1.7px; */
+}
+
+#togglePasswordBtn {
+display: flex;
+align-items: center;
+justify-content: center;
+height: 35px;
+/* margin-top: 10px; */
+color: var(--edit-color);
+border-top-right-radius: 10pt;
+border-bottom-right-radius: 10pt;
+border-top-left-radius: 0px;
+border-bottom-left-radius: 0px;
+border: none;
+background-color: var(--written-input-color);
+transition: box-shadow 0.2s ease;
+}
+
+#togglePasswordBtn:hover {
+    background-color: var(--written-input-color-hover);
+}
+  

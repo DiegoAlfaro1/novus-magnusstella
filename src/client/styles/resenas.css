@@ -1,0 +1,195 @@
+.form-resenas{
+    width: 100%;
+    
+}
+.respuesta_ajax{
+    width: 100%;        
+}
+.item-boxes{
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+body {
+    padding-bottom: 0%;
+}
+
+.btn{
+    background-color: var(--nav-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 19pt;
+    padding: 0;
+}
+
+
+.switch-checkbox {
+  padding-top: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  background: var(--body-color);
+  align-items: center;
+  border-radius: 5px;
+  padding: auto right;
+  justify-content: space-between;
+}
+
+.switch-checkbox input {
+  outline: none;
+  height: 20px;
+  /* Ajustado */
+  width: 50px;
+  /* Ajustado */
+  border-radius: 50px;
+  appearance: none;
+  position: relative;
+  background: #668bbb;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+  transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.switch-checkbox input:checked {
+  background: #e6e6e6;
+}
+
+.switch-checkbox input:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 20px;
+  /* Ajustado */
+  background: linear-gradient(#fff, #f2f2f2, #e6e6e6, #d9d9d9);
+  border-radius: 50px;
+  transform: scale(0.85);
+  transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+input:checked:before {
+  left: 27px;
+  /* Ajustado */
+}
+
+input:checked ~ .text:before {
+  content: "Deshabilitado";
+  font-size: 10px;
+  /* Ajustado */
+  font-weight: 500;
+  color: var(--disabled-color);
+}
+
+.switch-checkbox .text:before {
+  content: "Habilitado";
+  color: var(--edit-color);
+  font-size: 11px;
+  /* Ajustado */
+}
+
+.switch-checkbox.deshabilitado input {
+    background: rgb(107, 107, 107);
+}
+
+.switch-checkbox.deshabilitado input:checked {
+  background: #afafaf;
+}
+
+#nombre-resena{
+  display: inline;
+  color: var(--title-color);
+}
+
+#nombre-resena:hover{
+  display: inline;
+  color: var(--title-color-hover);
+}
+/* Fix overlapping in review cards */
+.item-container {
+  padding: 15px;
+  margin: 10px;
+  border: 2px solid var(--edit-color);
+  border-radius: 10px;
+  background: var(--body-color);
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-container .switch-checkbox {
+  margin-top: auto;
+  padding: 10px 5px;
+  min-height: 50px;
+}
+
+.item-container #fecha {
+  margin: 0;
+  padding: 0 5px;
+}
+
+.item-container .switch-checkbox .text {
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+/* Reviews page layout fixes */
+.reviews-container {
+  width: 100%;
+  padding: 20px;
+}
+
+.reviews-top-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.reviews-filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.reviews-search {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex: 1;
+  max-width: 400px;
+}
+
+.reviews-search input {
+  flex: 1;
+}
+
+.reviews-category-title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.reviews-category-title h1 {
+  color: var(--search-text);
+  font-size: 24px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .reviews-top-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .reviews-search {
+    max-width: 100%;
+  }
+}

@@ -5,7 +5,10 @@
   "main": "dist/app.js",
   "scripts": {
     "dev": "nodemon --exec ts-node src/app.ts",
+    "dev:client": "vite",
     "build": "tsc",
+    "build:client": "vite build",
+    "preview": "vite preview",
     "start": "node dist/app.js",
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write \"src/**/*.ts\""
@@ -20,7 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "chart.js": "^4.4.2",
+    "chart.js": "^4.5.1",
     "csrf-csrf": "^3.0.0",
     "dotenv": "^16.4.0",
     "ejs": "^3.1.9",
@@ -35,6 +38,10 @@
     "nodemailer": "^7.0.13",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
+    "react": "^19.2.4",
+    "react-chartjs-2": "^5.3.1",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.13.0",
     "reflect-metadata": "^0.2.1",
     "typeorm": "^0.3.20"
   },
@@ -51,12 +58,16 @@
     "@types/nodemailer": "^7.0.9",
     "@types/passport": "^1.0.16",
     "@types/passport-google-oauth20": "^2.0.14",
+    "@types/react": "^19.2.10",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
     "eslint": "^9.18.0",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
-    "typescript-eslint": "^8.19.1"
+    "typescript-eslint": "^8.19.1",
+    "vite": "^7.3.1"
   },
   "engines": {
     "node": ">=20.0.0"

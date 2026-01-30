@@ -1,0 +1,64 @@
+.help-card {
+  background-color: var(--nav-color);
+  color: var(--text-color);
+  font-size: 18pt;
+  border-radius: 0.5em;
+  text-align: center;
+}
+
+p{
+  font-size: 16pt;
+}
+
+h1 {
+  font-size: 36pt;
+}
+
+h2 {
+  font-size: 24pt;
+}
+
+.help-card:hover {
+  background-color: var(--hover-color);
+  cursor: pointer;
+}
+
+.help-card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 14em);
+  grid-gap: 2em;
+  grid-auto-rows: minmax(14em, auto);
+}
+
+.help-icon {
+  font-size: 5em;
+}
+
+.contenido {
+  margin: 0 auto;
+  min-width: 60%;
+  line-height: 2;
+  padding: 4em 1em;
+  overflow: auto;
+  padding: 1%;
+  padding-top: 0%;
+  padding-bottom: 0%;
+}
+
+.img-placeholder {
+  background-color: var(--help-card-color);
+  text-align: center;
+  border-radius: 5px;
+}
+
+body {
+  padding-bottom: 0%;
+}
+
+hr {
+  height: 2px;
+  border: none;
+  border-bottom: 1px solid;
+  /* color:gray;
+    background-color:gray  */
+}
