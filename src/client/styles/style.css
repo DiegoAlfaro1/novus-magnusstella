@@ -1466,3 +1466,23 @@ label {
 #openModalBtn-active:hover {
   background-color: var(--expand-menu);
 }
+
+/* Add focus indicators for accessibility */
+#openModalBtn:focus,
+#open_ModalBtn2:focus,
+#openModalBtn-active:focus,
+.cat-btn:focus,
+.dropbtn:focus {
+  outline: 3px solid #4a7ba7;
+  outline-offset: 2px;
+}
+
+#openModalBtn:focus-visible,
+#open_ModalBtn2:focus-visible,
+#openModalBtn-active:focus-visible,
+.cat-btn:focus-visible,
+.dropbtn:focus-visible {
+  outline: 3px solid #4a7ba7;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(74, 123, 167, 0.2);
+}

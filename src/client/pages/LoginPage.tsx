@@ -13,6 +13,7 @@ const LoginPage: React.FC = () => {
   };
 
   const handleEnterApp = () => {
+    // TODO: Remove in production - this is for demo/development only
     // Navigate to dashboard with default brand
     navigate('/graphics/dashboard/LU1');
   };

@@ -102,6 +102,7 @@ const customerSentiment = {
   labels: ['Positivo', 'Neutral', 'Negativo'],
   datasets: [
     {
+      label: 'Sentimiento del Cliente',
       data: [243, 45, 35],
       backgroundColor: [
         'rgba(75, 192, 192, 0.8)',
