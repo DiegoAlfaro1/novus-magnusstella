@@ -180,22 +180,20 @@ const DashboardPage: React.FC = () => {
           )}
         </div>
 
-        <div className="top-graficas">
-          <div id="promedio-mes-div" className="graphContainer">
+        <div className="dashboard-graphs-row">
+          <div className="graphContainer">
             <Line data={dashboardData.promedioPuntajes} options={{ maintainAspectRatio: true }} />
           </div>
 
-          <div id="tasaContestacion" className="graphContainer">
+          <div className="graphContainer">
             <Line data={dashboardData.tasaDeRespuesta} options={{ maintainAspectRatio: true }} />
           </div>
-        </div>
 
-        <div className="bottom-graficas">
-          <div id="respuesta-enviada-div" className="graphContainer">
+          <div className="graphContainer">
             <Bar data={dashboardData.encuestasEnviadas} options={{ maintainAspectRatio: true }} />
           </div>
 
-          <div id="promedioEstrellaNumero" className="graphContainer">
+          <div className="graphContainer">
             <h3>Calificación promedio</h3>
             <div id="estrella-numero">
               <div id="divison">
@@ -218,7 +216,7 @@ const DashboardPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="additional-graficas">
+        <div className="dashboard-graphs-row">
           <div className="graphContainer">
             <h3>Distribución por Calificación</h3>
             <Doughnut data={reviewsByRating} options={{ maintainAspectRatio: true }} />
@@ -228,9 +226,7 @@ const DashboardPage: React.FC = () => {
             <h3>Top 5 Productos Más Reseñados</h3>
             <Bar data={topProducts} options={{ maintainAspectRatio: true, indexAxis: 'y' }} />
           </div>
-        </div>
 
-        <div className="additional-graficas">
           <div className="graphContainer">
             <h3>Sentimiento del Cliente</h3>
             <Pie data={customerSentiment} options={{ maintainAspectRatio: true }} />

@@ -136,3 +136,60 @@ input:checked ~ .text:before {
   margin-left: 10px;
   white-space: nowrap;
 }
+
+/* Reviews page layout fixes */
+.reviews-container {
+  width: 100%;
+  padding: 20px;
+}
+
+.reviews-top-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.reviews-filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.reviews-search {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex: 1;
+  max-width: 400px;
+}
+
+.reviews-search input {
+  flex: 1;
+}
+
+.reviews-category-title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.reviews-category-title h1 {
+  color: var(--search-text);
+  font-size: 24px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .reviews-top-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .reviews-search {
+    max-width: 100%;
+  }
+}

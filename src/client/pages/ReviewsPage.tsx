@@ -49,61 +49,65 @@ const ReviewsPage: React.FC = () => {
 
   return (
     <Layout titulo="Reseñas" user={user}>
-      <div id="search-autocomplete" className="form-outline">
-        <div className="cat-search">
-          <FilterModal title="Filtros" buttonText="Filtros" modalId="myModal2">
-            <form>
-              <div className="input-product">
-                <div className="inputFilter">
-                  <label htmlFor="orden">Ordenar por: </label>
-                  <select name="orden">
-                    <option value="ascendente">Puntaje más bajo</option>
-                    <option value="descendente">Puntaje más alto</option>
-                  </select>
+      <div className="reviews-container">
+        <div className="reviews-top-bar">
+          <div className="reviews-filters">
+            <FilterModal title="Filtros" buttonText="Filtros" modalId="myModal2">
+              <form>
+                <div className="input-product">
+                  <div className="inputFilter">
+                    <label htmlFor="orden">Ordenar por: </label>
+                    <select name="orden">
+                      <option value="ascendente">Puntaje más bajo</option>
+                      <option value="descendente">Puntaje más alto</option>
+                    </select>
+                  </div>
+
+                  <div className="inputFilter">
+                    <label htmlFor="startDate">Fecha de inicio</label>
+                    <input type="date" name="startDate" id="dateFilter" />
+                  </div>
+
+                  <div className="inputFilter">
+                    <label htmlFor="endDate">Fecha final</label>
+                    <input type="date" name="endDate" id="dateFilter" />
+                  </div>
+
+                  <button type="submit" className="ingresar-btn">
+                    Submit
+                  </button>
                 </div>
+              </form>
+            </FilterModal>
 
-                <div className="inputFilter">
-                  <label htmlFor="startDate">Fecha de inicio</label>
-                  <input type="date" name="startDate" id="dateFilter" />
-                </div>
+            <CategorySelector basePath="/reviews/resenas" />
+          </div>
 
-                <div className="inputFilter">
-                  <label htmlFor="endDate">Fecha final</label>
-                  <input type="date" name="endDate" id="dateFilter" />
-                </div>
-
-                <button type="submit" className="ingresar-btn">
-                  Submit
-                </button>
-              </div>
-            </form>
-          </FilterModal>
-
-          <CategorySelector basePath="/reviews/resenas" />
-
-          {categoria && (
-            <div className="cat-tittle">
-              <h1>{categoria}</h1>
-            </div>
-          )}
+          <div className="reviews-search">
+            <input
+              type="search"
+              id="buscar"
+              className="form-control"
+              placeholder="Busca tu producto"
+            />
+            <button type="button" className="btn btn-primary">
+              <i className="fas fa-search"></i>
+            </button>
+          </div>
         </div>
 
-        <input
-          type="search"
-          id="buscar"
-          className="form-control"
-          placeholder="Busca tu producto"
-        />
-        <button type="button" className="btn btn-primary">
-          <i className="fas fa-search"></i>
-        </button>
-      </div>
+        {categoria && (
+          <div className="reviews-category-title">
+            <h1>{categoria}</h1>
+          </div>
+        )}
 
-      <div id="respuesta_ajax" className="respuesta_ajax">
-        <div className="item-boxes">
-          {reviews.map((review) => (
-            <ReviewCard key={review.id} review={review} brand={marca || 'LU1'} />
-          ))}
+        <div id="respuesta_ajax" className="respuesta_ajax">
+          <div className="item-boxes">
+            {reviews.map((review) => (
+              <ReviewCard key={review.id} review={review} brand={marca || 'LU1'} />
+            ))}
+          </div>
         </div>
       </div>
     </Layout>
