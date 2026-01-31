@@ -107,7 +107,7 @@ const UsersPage: React.FC = () => {
       setUsuarios(usuarios.map((u) => (u.id === selectedUser.id ? { ...u, ...userData } : u)));
     } else {
       const newUser: Usuario = {
-        id: Math.max(...usuarios.map((u) => u.id)) + 1,
+        id: Math.max(0, ...usuarios.map((u) => u.id)) + 1,
         nombre: userData.nombre || '',
         correo: userData.correo || '',
         marca: userData.marca || marca || 'LU1',

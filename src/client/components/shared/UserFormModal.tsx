@@ -51,8 +51,14 @@ const UserFormModal: React.FC<UserFormModalProps> = ({ isOpen, onClose, onSave, 
 
   if (!isOpen) return null;
 
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="modal" style={{ display: 'block' }} onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div className="modal" style={{ display: 'block' }} onClick={handleBackdropClick}>
       <div className="modal-content">
         <span className="close" onClick={onClose}>
           &times;
