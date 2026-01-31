@@ -43,3 +43,172 @@ body.dark a.settings:visited:hover {
   text-decoration: none;
   color: var(--highlight2);
 }
+
+.usuarios-container {
+  padding: 20px;
+  width: 100%;
+}
+
+.usuarios-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.usuarios-header h2 {
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--nav-color);
+}
+
+.data-table thead {
+  background-color: var(--button-color);
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--hover-color);
+}
+
+.data-table tr:hover {
+  background-color: var(--hover-color);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.pagination-btn {
+  padding: 8px 16px;
+  border: none;
+  background-color: var(--highlight);
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: var(--highlight2);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-weight: bold;
+}
+
+.btn-edit,
+.btn-secondary {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-edit {
+  background-color: var(--highlight);
+  color: #fff;
+}
+
+.btn-edit:hover {
+  background-color: var(--highlight2);
+}
+
+.btn-secondary {
+  background-color: var(--button-color);
+  color: var(--text-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--button-color-hover);
+}
+
+.estado-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.estado-badge.activo {
+  background-color: rgba(75, 192, 192, 0.3);
+  color: #0f9d58;
+}
+
+.estado-badge.inactivo {
+  background-color: rgba(255, 99, 132, 0.3);
+  color: #db4437;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--hover-color);
+  border-radius: 4px;
+  background-color: var(--help-card-color);
+  color: var(--text-color);
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: normal;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.graphContainer {
+  background-color: var(--nav-color);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
