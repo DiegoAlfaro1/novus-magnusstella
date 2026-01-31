@@ -1,27 +1,27 @@
 .delete {
-    text-decoration: none;
-    color: var(--delete-color);
-    background-color: var(--button-color);
-    border: solid 0px;
-    border-radius: 7pt;
+  text-decoration: none;
+  color: var(--delete-color);
+  background-color: var(--button-color);
+  border: solid 0px;
+  border-radius: 7pt;
 }
 
 .delete:hover {
-    color: var(--delete-color-hover);
-    background-color: var(--toggle-color);
+  color: var(--delete-color-hover);
+  background-color: var(--toggle-color);
 }
 
-a.settings{
-    text-decoration: none;
-    color: var(--delete-color);
-    background-color: var(--button-color);
-    border: solid 0px;
-    border-radius: 7pt;
+a.settings {
+  text-decoration: none;
+  color: var(--delete-color);
+  background-color: var(--button-color);
+  border: solid 0px;
+  border-radius: 7pt;
 }
 
 a.settings:hover {
-    color: var(--delete-color-hover);
-    background-color: var(--button-color-hover);
+  color: var(--delete-color-hover);
+  background-color: var(--button-color-hover);
 }
 
 body.dark a.settings:link {
@@ -73,7 +73,7 @@ body.dark a.settings:visited:hover {
 .data-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: var(--nav-color);
+  /* background-color: var(--nav-color); */
 }
 
 .data-table thead {
@@ -88,7 +88,7 @@ body.dark a.settings:visited:hover {
 }
 
 .data-table tr:hover {
-  background-color: var(--hover-color);
+  background-color: #adadad;
 }
 
 .pagination {

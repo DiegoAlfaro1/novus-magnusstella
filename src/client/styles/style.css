@@ -1,11 +1,11 @@
 /* ===== Google Font Import - Poppins ===== */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 * {
   margin: 0;
   padding: 7px;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 :root {
@@ -34,7 +34,7 @@
   --backGroundColor: #fbfafa;
   --line-color-1: #2e3d50;
   --boxShadow2: rgba(0, 0, 0, 0.2);
-  --help-card-color: #d2ddeb;
+  --help-card-color: #ffff;
   --disabled-color: #47688a;
   --title-color: #2e3d50;
   --title-color-hover: #557196;
@@ -45,12 +45,12 @@
   --button-color-hover: #adadad;
   --written-input-color: #f8fafc;
   --written-input-color-hover: #d4d7da;
-  --forms-color:#e9f2fc;
+  --forms-color: #e9f2fc;
   /* Transition */
-  --tran-02: all 0.0s ease;
+  --tran-02: all 0s ease;
   --tran-03: width 0.3s ease;
-  --tran-04: all 0.0s ease;
-  --tran-05: all 0.0s ease;
+  --tran-04: all 0s ease;
+  --tran-05: all 0s ease;
 }
 
 body {
@@ -59,7 +59,7 @@ body {
   transition: var(--tran-05);
   color: var(--nav-color);
   /* Letras en blanco */
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body.dark {
@@ -141,7 +141,7 @@ body.dark {
   z-index: 0;
 }
 
-body.dark.side_bar{
+body.dark.side_bar {
   transition: 0s;
 }
 
@@ -330,7 +330,7 @@ nav .nav-bar .logo a {
   padding: 10px;
 }
 .nav-links li a::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   bottom: 0;
@@ -431,7 +431,7 @@ nav .nav-bar .logo a {
 }
 
 .user-sub-menu::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 25px;
   top: -4px;
@@ -521,8 +521,6 @@ body.dark a:hover {
   margin: 20px 0 0 105pt;
   height: 100%;
 }
-
-
 
 .main-content-increase {
   margin: 20px 0 0 205px;
@@ -754,7 +752,6 @@ table.table .avatar {
 
 /* review completa */
 
-
 .contenido {
   padding: 10pt;
   background: var(--body-color);
@@ -814,7 +811,7 @@ table.table .avatar {
 }
 
 .rating:not(:checked) > label:before {
-  content: "★";
+  content: '★';
 }
 
 .rating > input:checked + label:hover,
@@ -1281,8 +1278,6 @@ label {
   display: var(--image2Display);
 }
 
-
-
 /* Modal para los filtros de pagina de graficas */
 
 #openModalBtn,
@@ -1421,7 +1416,7 @@ label {
 }
 /* boton del ojito para vista de creacion de usuario y edicion de usuario */
 
-#fecha_c{
+#fecha_c {
   text-align: right;
 }
 /* Additional graphs styling */
@@ -1448,7 +1443,7 @@ label {
 }
 
 /* Fix filter button styling to match category button */
-#openModalBtn, 
+#openModalBtn,
 #open_ModalBtn2,
 #openModalBtn-active {
   background-color: var(--help-card-color);
