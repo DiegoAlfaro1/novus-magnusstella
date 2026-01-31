@@ -12,6 +12,7 @@
 
 .correos-header h2 {
   margin: 0;
+  color: var(--text-color) !important;
 }
 
 .two-column-layout {
@@ -46,6 +47,11 @@ body {
 
 .editor-header h3 {
   margin: 0;
+  color: var(--text-color) !important;
+}
+
+.preview-header h3 {
+  color: var(--text-color) !important;
 }
 
 .question-item {
@@ -65,6 +71,7 @@ body {
 .question-number {
   font-weight: bold;
   font-size: 16px;
+  color: var(--text-color);
 }
 
 .btn-remove {
@@ -410,4 +417,22 @@ body.dark a.settings:visited:hover {
 .blankspace{
   min-height: 2em;
   width: 100%;
+}
+/* Ensure all labels and text are visible */
+.question-editor label,
+.options-header label,
+.form-group label {
+  color: var(--text-color) !important;
+}
+
+.question-item {
+  color: var(--text-color);
+}
+
+.empty-state {
+  color: var(--text-color);
+}
+
+.options-section {
+  color: var(--text-color);
 }

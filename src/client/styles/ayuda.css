@@ -77,9 +77,14 @@ hr {
   margin-bottom: 40px;
 }
 
+.help-header h1,
+.help-header p {
+  color: var(--text-color) !important;
+}
+
 .help-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin-bottom: 40px;
 }
@@ -93,11 +98,27 @@ hr {
   align-items: center;
   justify-content: center;
   min-height: 200px;
+  color: var(--text-color) !important;
+}
+
+.help-card h3 {
+  color: var(--text-color) !important;
+}
+
+.help-card p {
+  color: var(--text-color) !important;
+  opacity: 0.9;
 }
 
 .help-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.help-card:hover h3,
+.help-card:hover p {
+  opacity: 1;
+  color: var(--text-color) !important;
 }
 
 .help-card-icon {
@@ -110,6 +131,12 @@ hr {
   padding: 30px;
   border-radius: 10px;
   margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.help-section h2,
+.help-section h3 {
+  color: var(--text-color) !important;
 }
 
 .help-section h3 {
@@ -120,11 +147,13 @@ hr {
 
 .help-content {
   line-height: 1.8;
+  color: var(--text-color);
 }
 
 .help-content p {
   font-size: 16px;
   margin-bottom: 15px;
+  color: var(--text-color);
 }
 
 .help-content ul {
@@ -135,6 +164,7 @@ hr {
 .help-content li {
   margin-bottom: 10px;
   font-size: 16px;
+  color: var(--text-color);
 }
 
 .help-image-placeholder {
