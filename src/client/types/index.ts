@@ -39,3 +39,45 @@ export interface DashboardData {
   numAVGEstrella: number;
   porcentaje: number;
 }
+
+export interface Usuario {
+  id: number;
+  nombre: string;
+  correo: string;
+  marca: Brand;
+  permisos: Permission[];
+  fecha_creacion: string;
+  fecha_modificacion?: string;
+  estado: 'activo' | 'inactivo';
+}
+
+export interface HistorialUsuario {
+  id: number;
+  usuario_id: number;
+  accion: string;
+  fecha: string;
+  usuario_modificador: string;
+}
+
+export interface Pregunta {
+  id: number;
+  texto: string;
+  tipo: 'cerrada' | 'abierta' | 'checkbox';
+  orden: number;
+  opciones?: Opcion[];
+}
+
+export interface Opcion {
+  id: number;
+  pregunta_id: number;
+  texto: string;
+  orden: number;
+}
+
+export interface HelpTopic {
+  id: string;
+  titulo: string;
+  descripcion: string;
+  icono?: string;
+  contenido?: string;
+}

@@ -7,6 +7,7 @@ import ReviewsPage from './pages/ReviewsPage';
 import ReviewDetailPage from './pages/ReviewDetailPage';
 import EmailsPage from './pages/EmailsPage';
 import UsersPage from './pages/UsersPage';
+import UserChangeLogPage from './pages/UserChangeLogPage';
 import HelpPage from './pages/HelpPage';
 import ErrorPage from './pages/ErrorPage';
 import SurveyResultPage from './pages/SurveyResultPage';
@@ -29,8 +30,12 @@ const App: React.FC = () => {
           <Route path="/emails/correos/:marca" element={<EmailsPage />} />
           
           <Route path="/usuarios/:page/:marca" element={<UsersPage />} />
+          <Route path="/usuarios/crear/:marca" element={<UsersPage />} />
+          <Route path="/usuarios/editar/:id/:marca" element={<UsersPage />} />
+          <Route path="/usuarios/registro/:marca" element={<UserChangeLogPage />} />
           
           <Route path="/ayuda/:marca" element={<HelpPage />} />
+          <Route path="/ayuda/:marca/:topic" element={<HelpPage />} />
           
           <Route path="/encuestaExitosa" element={<SurveyResultPage type="exitosa" />} />
           <Route path="/encuestaRepetida" element={<SurveyResultPage type="repetida" />} />
